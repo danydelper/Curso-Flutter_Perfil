@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:perfil/controller.dart';
 import 'package:perfil/list.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -14,14 +15,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: (darkMode) ? Colors.black : Colors.white,
       drawer: Drawer(
         child: ListView(
           children: ListMenu.get(context),
         ),
       ),
       appBar: AppBar(
-        backgroundColor: (darkMode) ? Colors.white70 : Colors.black,
         title: Row(
           children: [
             Container(
@@ -37,9 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const Text(
               'Perfil',
-              style: TextStyle(
-                color: Colors.white,
-              ),
+              style: TextStyle(),
             ),
           ],
         ),
@@ -48,7 +45,6 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: EdgeInsets.only(right: 20),
               child: Icon(
                 Icons.miscellaneous_services,
-                color: Colors.white,
               )),
         ],
       ),
@@ -80,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             Radius.circular(10),
                           ),
                           child: Container(
-                            color: Colors.blue,
+//                            color: Colors.blue,
                             padding: const EdgeInsets.all(5),
                             child: const Icon(
                               Icons.edit,
@@ -92,9 +88,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     ],
                   ),
                   card(
+                      context: context,
                       title: 'Daniel Peres',
-                      subtitle: "daniel@delper.com.br",
-                      vdarkMode: darkMode),
+                      subtitle: "daniel@delper.com.br"),
                 ],
               ),
             ),
@@ -103,74 +99,68 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Table(
                 border: TableBorder.symmetric(
                   inside: BorderSide(
-                    color: (darkMode) ? Colors.white : Colors.black,
+                    color: Theme.of(context).primaryColorLight,
                   ),
                 ),
                 children: [
                   TableRow(
                     children: [
-                      card(
-                          title: '27',
-                          subtitle: 'Projetos',
-                          vdarkMode: darkMode),
-                      card(
-                          title: '259', subtitle: 'Tasks', vdarkMode: darkMode),
-                      card(
-                          title: '35', subtitle: 'Groups', vdarkMode: darkMode),
+                      card(context: context, title: '27', subtitle: 'Projetos'),
+                      card(context: context, title: '259', subtitle: 'Tasks'),
+                      card(context: context, title: '35', subtitle: 'Groups'),
                     ],
                   )
                 ],
               ),
             ),
             Divider(
-              color: (darkMode) ? Colors.white : Colors.black,
+              color: Theme.of(context).dividerColor,
               height: 10,
             ),
-            listTile(icon: Icons.work, title: 'Workspace', vdarkMode: darkMode),
+            listTile(icon: Icons.work, title: 'Workspace'),
+            listTile(icon: Icons.person, title: 'Edit Profile'),
             listTile(
-                icon: Icons.person, title: 'Edit Profile', vdarkMode: darkMode),
-            listTile(
-                icon: Icons.notifications,
-                title: 'Notifications',
-                vdarkMode: darkMode),
-            listTile(
-                icon: Icons.security, title: 'Secutiry', vdarkMode: darkMode),
+              icon: Icons.notifications,
+              title: 'Notifications',
+            ),
+            listTile(icon: Icons.security, title: 'Secutiry'),
             SwitchListTile(
               value: darkMode,
               onChanged: (value) {
-                setState(() {
-                  darkMode = value;
-                });
+                darkMode = value;
+                var vIsDark = darkMode ? ThemeMode.dark : ThemeMode.light;
+                PerfilController.setThemeMode(vIsDark);
               },
-              secondary: Icon(
+              secondary: const Icon(
                 Icons.dark_mode,
-                color: (darkMode) ? Colors.white : Colors.black,
               ),
-              title: Text(
+              title: const Text(
                 'DarkTeme',
-                style: TextStyle(
-                  color: (darkMode) ? Colors.white : Colors.black,
-                ),
+                style: TextStyle(),
               ),
-              activeColor: Colors.white,
-              inactiveThumbColor: Colors.white,
-              activeTrackColor: Colors.blue,
-              inactiveTrackColor: Colors.red,
+              //             activeColor: Colors.white,
+              //             inactiveThumbColor: Colors.white,
+              //             activeTrackColor: Colors.blue,
+              //             inactiveTrackColor: Colors.red,
             ),
             GestureDetector(
-                onTap: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: const Text('Tem certeza que deseja SAIR ?'),
-                      action: SnackBarAction(
-                          label: 'Sair',
-                          onPressed: () {},
-                          textColor: Colors.red[300]),
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: const Text('Tem certeza que deseja SAIR ?'),
+                    action: SnackBarAction(
+                      label: 'Sair',
+                      onPressed: () {},
                     ),
-                  );
-                },
-                child: listTile(
-                    icon: Icons.logout, title: 'Logout', vdarkMode: darkMode)),
+                  ),
+                );
+              },
+              child: listTile(
+                icon: Icons.logout,
+                title: 'Logout',
+                color: Colors.red,
+              ),
+            ),
           ],
         ),
       ),
@@ -178,12 +168,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-Widget listTile(
-    {required IconData icon, required String title, required bool vdarkMode}) {
+Widget listTile({required IconData icon, required String title, Color? color}) {
   return ListTile(
-    iconColor: (vdarkMode) ? Colors.white : Colors.black,
-    textColor: (vdarkMode) ? Colors.white : Colors.black,
+    iconColor: color,
     leading: Icon(icon),
+    textColor: color,
     title: Text(title),
   );
 }
@@ -191,24 +180,19 @@ Widget listTile(
 Widget card(
     {required String title,
     required String subtitle,
-    required bool vdarkMode}) {
+    required BuildContext context}) {
   return Column(
     children: [
       Padding(
         padding: const EdgeInsets.symmetric(vertical: 5),
         child: Text(
           title,
-          style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: (vdarkMode) ? Colors.white : Colors.black,
-              fontSize: 20),
+          style: Theme.of(context).textTheme.bodyText1,
         ),
       ),
       Text(
         subtitle,
-        style: TextStyle(
-          color: (vdarkMode) ? Colors.white : Colors.black,
-        ),
+        style: Theme.of(context).textTheme.bodyText2,
       ),
     ],
   );
