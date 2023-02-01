@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:perfil/home.dart';
 import 'package:perfil/index.dart';
 
 class ListMenu {
@@ -15,6 +16,16 @@ class ListMenu {
           );
         },
         child: const Text('Perfil'),
+      ),
+      TextButton(
+        onPressed: () {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (ctx) => const HomeView(),
+            ),
+          );
+        },
+        child: const Text('Home Page'),
       ),
     ];
   }

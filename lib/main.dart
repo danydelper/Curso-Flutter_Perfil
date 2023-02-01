@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:perfil/cadastro.dart';
 import 'package:perfil/controller.dart';
+import 'package:perfil/home.dart';
 import 'package:perfil/index.dart';
 import 'package:perfil/theme_data.dart';
 
@@ -31,7 +33,20 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeDataPerfil.getLight(),
       darkTheme: ThemeDataPerfil.getDart(),
       themeMode: PerfilController.isDark.value,
-      home: const MyHomePage(),
+      onGenerateRoute: (RouteSettings setting) {
+        if (setting.name == '/cadastro') {
+          return MaterialPageRoute(
+            builder: (ctx) => CadastroView(),
+          );
+        }
+        return null;
+      },
+      routes: {
+        "/home": (ctx) => const HomeView(),
+        "/perfil": (ctx) => const MyHomePage(),
+      },
+      initialRoute: '/home',
+//      home: const MyHomePage(),
     );
   }
 }
