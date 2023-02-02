@@ -4,6 +4,7 @@ import 'package:perfil/controller.dart';
 import 'package:perfil/home.dart';
 import 'package:perfil/index.dart';
 import 'package:perfil/theme_data.dart';
+import 'package:perfil/userMode.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,11 +36,11 @@ class _MyAppState extends State<MyApp> {
       themeMode: PerfilController.isDark.value,
       onGenerateRoute: (RouteSettings setting) {
         if (setting.name == '/cadastro') {
+          final user = setting.arguments as User?;
           return MaterialPageRoute(
-            builder: (ctx) => CadastroView(),
+            builder: (ctx) => CadastroView(user: user),
           );
         }
-        return null;
       },
       routes: {
         "/home": (ctx) => const HomeView(),

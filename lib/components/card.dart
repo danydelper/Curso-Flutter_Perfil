@@ -39,7 +39,7 @@ class CardName extends StatelessWidget {
             ),
             child: IconButton(
               onPressed: () {
-                Navigator.of(context).pushNamed('/cadatro',
+                Navigator.of(context).pushNamed('/cadastro',
                     arguments: User(nome: name, idade: idade));
               },
               icon: const Icon(Icons.edit),

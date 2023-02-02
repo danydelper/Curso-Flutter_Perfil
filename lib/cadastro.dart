@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:perfil/cadastroController.dart';
+import 'package:perfil/userMode.dart';
 
 class CadastroView extends StatelessWidget {
-  CadastroView({super.key});
+  CadastroView({super.key, required this.user});
 
+  final User? user;
   final controller = CadastroController();
   final nameController = TextEditingController();
   final idadeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    if (user != null) {
+      nameController.text = user!.nome;
+      idadeController.text = user!.idade.toString();
+    }
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cadastro'),
@@ -50,7 +56,11 @@ class CadastroView extends StatelessWidget {
                       '/home', (route) => false,
                       arguments: listUsers);
                 },
-                child: const Text('Cadastrar'),
+                child: Visibility(
+                  visible: user == null,
+                  child: const Text('Cadastrar'),
+                  replacement: const Text('Editar'),
+                ),
               ),
             ],
           ),
