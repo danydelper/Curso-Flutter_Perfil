@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:perfil/cadastroController.dart';
 
 class CadastroView extends StatelessWidget {
   CadastroView({super.key});
+
+  final controller = CadastroController();
   final nameController = TextEditingController();
   final idadeController = TextEditingController();
 
@@ -39,7 +42,14 @@ class CadastroView extends StatelessWidget {
                 height: 10,
               ),
               OutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  final listUsers = controller.addUser(
+                      nome: nameController.text, idade: idadeController.text);
+
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      '/home', (route) => false,
+                      arguments: listUsers);
+                },
                 child: const Text('Cadastrar'),
               ),
             ],
