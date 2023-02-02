@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:perfil/userMode.dart';
+import 'package:perfil/user/userMode.dart';
 
 class CardName extends StatelessWidget {
   final String name;

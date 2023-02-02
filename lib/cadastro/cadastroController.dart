@@ -1,6 +1,6 @@
 // ignore: file_names
-import 'package:perfil/userMode.dart';
-import 'package:perfil/userService.dart';
+import 'package:perfil/user/userMode.dart';
+import 'package:perfil/user/userService.dart';
 
 class CadastroController {
   final UserService _userService = UserService();

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:perfil/components/card.dart';
-import 'package:perfil/userMode.dart';
+import 'package:perfil/user/userMode.dart';
 
-import 'list.dart';
+import '../components/list.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

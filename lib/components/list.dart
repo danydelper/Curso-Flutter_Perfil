@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:perfil/home.dart';
-import 'package:perfil/index.dart';
+import 'package:perfil/home/home.dart';
+import 'package:perfil/perfil/perfil.dart';
 
 class ListMenu {
   ListMenu._();

@@ -1,4 +1,4 @@
-import 'package:perfil/userMode.dart';
+import 'package:perfil/user/userMode.dart';
 
 class UserService {
   final _listUsers = <User>[];

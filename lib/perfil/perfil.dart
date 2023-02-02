@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:perfil/controller.dart';
-import 'package:perfil/list.dart';
+import 'package:perfil/perfil/perfilController.dart';
+import 'package:perfil/components/list.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});

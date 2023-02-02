@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:perfil/cadastroController.dart';
-import 'package:perfil/userMode.dart';
+import 'package:perfil/cadastro/cadastroController.dart';
+import 'package:perfil/user/userMode.dart';
 
 class CadastroView extends StatelessWidget {
   CadastroView({super.key, required this.user});
