@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:perfil/components/card.dart';
+import 'package:perfil/home/homeController.dart';
 import 'package:perfil/user/userMode.dart';
 
 import '../components/list.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  HomeView({super.key});
+
+  final controller = HomeController();
 
   @override
   Widget build(BuildContext context) {
-    final listUser = ModalRoute.of(context)!.settings.arguments as List<User>?;
     return Scaffold(
       drawer: Drawer(
         child: ListView(
@@ -24,15 +26,31 @@ class HomeView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.70,
-                child: Column(
-                  children: listUser
-                          ?.map((user) =>
-                              CardName(name: user.nome, idade: user.idade))
-                          .toList() ??
-                      [],
-                ),
+              FutureBuilder<List<User>>(
+                future: controller.getAllUser(),
+                builder: (ctx, snapshot) {
+                  if (snapshot.hasData) {
+                    final listUser = snapshot.data!;
+                    return SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.70,
+                      child: Column(
+                        children: listUser
+                            .map(
+                              (user) =>
+                                  CardName(name: user.nome, idade: user.idade),
+                            )
+                            .toList(),
+                      ),
+                    );
+                  } else if (snapshot.hasError) {
+                    return const Text(
+                      'Erro inesperado',
+                      style: TextStyle(fontSize: 30),
+                    );
+                  } else {
+                    return const CircularProgressIndicator();
+                  }
+                },
               ),
               OutlinedButton(
                 onPressed: () {

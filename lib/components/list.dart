@@ -21,7 +21,7 @@ class ListMenu {
         onPressed: () {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (ctx) => const HomeView(),
+              builder: (ctx) => HomeView(),
             ),
           );
         },

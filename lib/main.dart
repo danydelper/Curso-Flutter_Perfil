@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> {
         }
       },
       routes: {
-        "/home": (ctx) => const HomeView(),
+        "/home": (ctx) => HomeView(),
         "/perfil": (ctx) => const MyHomePage(),
       },
       initialRoute: '/home',

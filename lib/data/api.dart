@@ -22,7 +22,22 @@ class ApiService {
     }
   }
 
-  Future<List<User>> getAll() async {
+  Future<List<User>> getAll(String path) async {
+    final url = Uri.http(_baseUrl, "/api/$path");
+    final response = await http.get(
+      url,
+      headers: header,
+    );
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body) as List;
+      final user = data.map((json) => User.fromJson(json)).toList();
+
+      print(data);
+
+      return user;
+    }
+
     return [];
   }
 }
