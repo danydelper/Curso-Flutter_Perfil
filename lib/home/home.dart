@@ -36,8 +36,10 @@ class HomeView extends StatelessWidget {
                       child: Column(
                         children: listUser
                             .map(
-                              (user) =>
-                                  CardName(name: user.nome, idade: user.idade),
+                              (user) => CardName(
+                                  name: user.nome,
+                                  idade: user.idade,
+                                  userId: user.id!),
                             )
                             .toList(),
                       ),

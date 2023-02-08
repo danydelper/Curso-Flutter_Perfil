@@ -1,5 +1,4 @@
 import 'package:perfil/data/api.dart';
-
 import '../user/userMode.dart';
 
 class HomeController {

@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:perfil/data/api.dart';
+import 'package:perfil/user/userMode.dart';
 
 class CadastroController {
   final ApiService _apiService = ApiService();
@@ -13,6 +14,18 @@ class CadastroController {
 
     if (isTrue) {
       Navigator.of(context).pushNamedAndRemoveUntil("/home", (route) => false);
+    }
+  }
+
+  Future<User> getUser(String? userId) async {
+    if (userId != null) {
+      final user = await _apiService.getFind("user", id: userId);
+
+      nameController.text = user.nome;
+      idadeController.text = user.idade.toString();
+      return user;
+    } else {
+      return User(nome: "", idade: 0);
     }
   }
 }
