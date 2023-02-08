@@ -57,4 +57,33 @@ class ApiService {
 
     return User(nome: "", idade: 0);
   }
+
+  Future<bool> put(
+    String path, {
+    required Map<String, Object?> data,
+    Map<String, dynamic>? parameter,
+  }) async {
+    final url = Uri.http(_baseUrl, "/api/$path", parameter);
+
+    final response = await http.put(
+      url,
+      body: jsonEncode(data),
+      headers: header,
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<void> delete(String path, {Map<String, Object?>? parameter}) async {
+    final url = Uri.http(_baseUrl, "/api/$path", parameter);
+
+    await http.delete(
+      url,
+      headers: header,
+    );
+  }
 }

@@ -13,6 +13,7 @@ class CadastroController {
         data: {"name": nameController.text, "idade": idadeController.text});
 
     if (isTrue) {
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pushNamedAndRemoveUntil("/home", (route) => false);
     }
   }
@@ -26,6 +27,20 @@ class CadastroController {
       return user;
     } else {
       return User(nome: "", idade: 0);
+    }
+  }
+
+  Future<void> editUser(
+      {required String userId, required BuildContext context}) async {
+    final isTrue = await _apiService.put(
+      "user",
+      data: {"name": nameController.text, "idade": idadeController.text},
+      parameter: {"id": userId},
+    );
+
+    if (isTrue) {
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pushNamedAndRemoveUntil("/home", (route) => false);
     }
   }
 }
