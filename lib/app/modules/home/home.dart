@@ -38,20 +38,20 @@ class _HomeViewState extends State<HomeView> {
                     final listUser = snapshot.data!;
                     return SizedBox(
                       height: MediaQuery.of(context).size.height * 0.70,
-                      child: Column(
-                        children: listUser
-                            .map(
-                              (user) => CardName(
-                                name: user.nome,
-                                idade: user.idade,
-                                userId: user.id!,
-                                onDelete: () async {
-                                  await controller.deleteUser(user.id!);
-                                  setState(() {});
-                                },
-                              ),
-                            )
-                            .toList(),
+                      child: ListView.builder(
+                        itemCount: listUser.length,
+                        itemBuilder: (ctx, i) {
+                          final user = listUser[i];
+                          return CardName(
+                            name: user.nome,
+                            idade: user.idade,
+                            userId: user.id!,
+                            onDelete: () async {
+                              await controller.deleteUser(user.id!);
+                              setState(() {});
+                            },
+                          );
+                        },
                       ),
                     );
                   } else if (snapshot.hasError) {

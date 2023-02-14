@@ -41,7 +41,7 @@ class UserRepository implements IUserRepository {
 
   @override
   Future<bool> postUser({required Map<String, Object?> data}) async {
-    final response = await _rest.put("user", data: data);
+    final response = await _rest.post("user", data: data);
 
     if (response.statusCode == 200) {
       return true;
@@ -53,7 +53,7 @@ class UserRepository implements IUserRepository {
   @override
   Future<bool> putUser(
       {required Map<String, Object?> data, required String id}) async {
-    final response = await _rest.put("user", data: data);
+    final response = await _rest.put("user", data: data, parameter: {"id": id});
 
     if (response.statusCode == 200) {
       return true;
