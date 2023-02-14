@@ -5,6 +5,8 @@ abstract class IUserRepository {
 
   Future<User> getFindUser({required String id});
 
+  Future<List<User>> getAll();
+
   Future<bool> putUser(
       {required Map<String, Object?> data, required String id});
 

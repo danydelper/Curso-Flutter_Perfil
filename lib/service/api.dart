@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:perfil/user/userMode.dart';
 
-class ApiService {
+class Rest {
   final _baseUrl = "10.0.2.2:3002";
   final header = {"Content-Type": "application/json"};
 

@@ -9,6 +9,12 @@ class UserRepository implements IUserRepository {
   }
 
   @override
+  Future<List<User>> getAll() {
+    // TODO: implement getAll
+    throw UnimplementedError();
+  }
+
+  @override
   Future<User> getFindUser({required String id}) {
     // TODO: implement getFindUser
     throw UnimplementedError();
@@ -21,7 +27,8 @@ class UserRepository implements IUserRepository {
   }
 
   @override
-  Future<bool> putUser({required Map<String, Object?> data, required String id}) {
+  Future<bool> putUser(
+      {required Map<String, Object?> data, required String id}) {
     // TODO: implement putUser
     throw UnimplementedError();
   }
