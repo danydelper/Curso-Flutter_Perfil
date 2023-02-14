@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:perfil/cadastro/cadastroController.dart';
+import 'package:perfil/app/modules/cadastro/cadastroController.dart';
 import 'package:perfil/user/userMode.dart';
 
 class CadastroView extends StatelessWidget {

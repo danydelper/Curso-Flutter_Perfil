@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:perfil/components/card.dart';
-import 'package:perfil/home/homeController.dart';
+import 'package:perfil/app/components/card.dart';
+import 'package:perfil/app/modules/home/homeController.dart';
 import 'package:perfil/user/userMode.dart';
 
-import '../components/list.dart';
+import '../../components/list.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});

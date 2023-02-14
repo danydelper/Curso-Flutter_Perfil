@@ -1,5 +1,5 @@
-import 'package:perfil/data/api.dart';
-import '../user/userMode.dart';
+import 'package:perfil/service/api.dart';
+import '../../../user/userMode.dart';
 
 class HomeController {
   final ApiService _apiService = ApiService();

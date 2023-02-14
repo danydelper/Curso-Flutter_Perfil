@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:perfil/data/api.dart';
+import 'package:perfil/service/api.dart';
 import 'package:perfil/user/userMode.dart';
 
 class CadastroController {

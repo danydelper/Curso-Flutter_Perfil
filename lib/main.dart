@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:perfil/cadastro/cadastro.dart';
-import 'package:perfil/perfil/perfilController.dart';
-import 'package:perfil/home/home.dart';
-import 'package:perfil/perfil/perfil.dart';
-import 'package:perfil/components/theme_data.dart';
+import 'package:perfil/app/modules/cadastro/cadastro.dart';
+import 'package:perfil/app/modules/perfil/perfilController.dart';
+import 'package:perfil/app/modules/home/home.dart';
+import 'package:perfil/app/modules/perfil/perfil.dart';
+import 'package:perfil/app/components/theme_data.dart';
 import 'package:perfil/user/userMode.dart';
 
 void main() {
